@@ -1,0 +1,12 @@
+.footer_container {
+  padding: 15px 20px 10px 5px;
+  background: #FAFBFC;
+  color: #535766;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  font-size: 12px;
+  margin-top: 30px;
+}

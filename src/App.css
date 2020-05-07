@@ -1,0 +1,11 @@
+
+.category_img_container, .topbrands_img_container {
+  width: 100vw;
+  height: 500px;
+  box-sizing: border-box;
+  margin: 80px 0px 60px 60px;
+}
+
+.category_img_container > img, .topbrands_img_container > img {
+  width: 1300px;
+}

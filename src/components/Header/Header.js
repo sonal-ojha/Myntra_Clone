@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, HashRouter as Router } from 'react-router-dom';
 
 import Search from '../Search/Search';
 
@@ -6,6 +7,7 @@ import './header.css';
 
 class Header extends React.Component {
   render() {
+    const { wishlistCount, cartCount } = this.props;
     return (
       <React.Fragment>
         <header>
@@ -16,8 +18,14 @@ class Header extends React.Component {
             <div className="header_contents header_content_types">
               <div className="item_type">Men</div>
               <div className="item_type">Women</div>
-              <div className="item_type">Girls</div>
-              <div className="item_type">Boys</div>
+              <Router>
+                <Link to="/girls">
+                  <div className="item_type">Girls</div>
+                </Link>
+                <Link to="/boys">
+                  <div className="item_type">Boys</div>
+                </Link>
+              </Router>
             </div>
             <Search />
           </div>
@@ -26,10 +34,10 @@ class Header extends React.Component {
               Profile
           </div>
             <div className="wishlist">
-              Wishlist
+              Wishlist({wishlistCount})
           </div>
             <div className="bag">
-              Bag
+              Bag({cartCount})
           </div>
           </div>
         </header>

@@ -5,7 +5,7 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" value="" onChange={this.handleChnage} placeholder="Search for products, brands and more ..."  className="search_input" />
+        <input type="text" value="" onChange={()=> {}} placeholder="Search for products, brands and more ..."  className="search_input" />
       </div>
     )
   }

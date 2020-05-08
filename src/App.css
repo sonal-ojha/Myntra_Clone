@@ -9,3 +9,7 @@
 .category_img_container > img, .topbrands_img_container > img {
   width: 1300px;
 }
+
+a {
+  text-decoration: none;
+}

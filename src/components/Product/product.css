@@ -1,0 +1,50 @@
+.brandType {
+  font-size: 16px;
+  color: #282c3f;
+  font-weight: 600;
+  margin: 10px 0px 0px 15px;
+}
+
+.price {
+  font-size: 14px;
+  color: #282c3f;
+  font-weight: 500;
+  margin: 10px 0px 10px 15px;
+}
+
+.addToBag {
+  width: 120px;
+  height: 35px;
+  border-radius: 2px; 
+  background-color: #ff3e6c;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  margin: 20 10px 15px 0px;
+  outline: none;
+}
+
+.wishlist_btn {
+  width: 80px;
+  height: 35px;
+  border: 1px solid #d4d5d9;
+  color: #282c3f;
+  border-radius: 2px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  margin: 20 10px 0px 0px;
+  outline: none;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.wishlist_btn:hover {
+  border: 1px solid #535766
+}

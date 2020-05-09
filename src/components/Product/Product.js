@@ -11,8 +11,8 @@ class Product extends React.Component {
         </div>
         <div className="brandType">Brand: {product.brand}</div>
         <div className="price">Price: Rs.{product.price} </div>
-        <button className="addToBag" onClick={addProductToBag}>Add To Bag</button>
-        <button className="wishlist_btn" onClick={addProductToWishlist}>Wishlist</button>
+        <button className="addToBag" onClick={() => addProductToBag(product)}>Add To Bag</button>
+        <button className="wishlist_btn" onClick={() => addProductToWishlist(product)}>Wishlist</button>
       </div>
     )
   }

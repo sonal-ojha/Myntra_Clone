@@ -33,12 +33,18 @@ class Header extends React.Component {
             <div className="user_profile">
               Profile
           </div>
-            <div className="wishlist">
-              Wishlist({wishlistCount})
-          </div>
-            <div className="bag">
-              Bag({cartCount})
-          </div>
+            <Router>
+              <Link to="/wishlistItems">
+                <div className="wishlist">
+                  Wishlist({wishlistCount})
+                </div>
+              </Link>
+              <Link to="/ItemsInbaggage">
+                <div className="bag">
+                  Bag({cartCount})
+                </div>
+              </Link>
+            </Router>
           </div>
         </header>
       </React.Fragment>

@@ -19,6 +19,7 @@ class AllProducts extends React.Component {
               product={productItem}
               addProductToBag={addProductToBag}
               addProductToWishlist={addProductToWishlist}
+              key={productItem.id}
             />
           ))}
         </div>

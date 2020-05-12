@@ -1,20 +1,22 @@
 import React from 'react';
 import './allProducts.css';
 
+import { connect } from 'react-redux';
+
 import Product from '../Product/Product';
 
 class AllProducts extends React.Component {
   render() {
-    const { allProducts, addProductToBag, addProductToWishlist } = this.props;
+    const { addProductToBag, addProductToWishlist, allBoysData } = this.props;
     return (
       <div className="products_Container">
-        {!!allProducts && allProducts.count && (
+        {!!allBoysData && (
           <h4>
-            Total Products available: {allProducts.count}
+            Total Products available: {allBoysData.length}
           </h4>
         )}
         <div className="allProductsList_Container">
-          {!!allProducts && allProducts.data.length > 0 && allProducts.data.map(productItem => (
+          {!!allBoysData && allBoysData.length > 0 && allBoysData.map(productItem => (
             <Product 
               product={productItem}
               addProductToBag={addProductToBag}
@@ -28,4 +30,8 @@ class AllProducts extends React.Component {
   }
 }
 
-export default AllProducts;
+const mapStoreToProps = (store) => ({
+  allBoysData: store.boysProductDetails.allBoysProducts
+});
+
+export default connect(mapStoreToProps)(AllProducts);

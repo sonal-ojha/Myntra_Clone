@@ -1,6 +1,8 @@
 import React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
 import './App.css';
 
 import Header from './components/Header/Header';
@@ -12,6 +14,10 @@ import AllProducts from './components/AllProducts/AllProducts';
 import SelectedProducts from './components/SelectedProducts/SelectedProducts';
 
 import { boysData } from './data';
+
+// Import Actions here
+import { getAllBoysProducts } from './actions/getAllBoysProducts';
+import { addItemToBag } from './actions/updateBagItems';
 
 const LandingPage = () => (
   <React.Fragment>
@@ -27,20 +33,26 @@ const LandingPage = () => (
 class App extends React.Component {
 
   state = {
-    // cart: 0,
-    // wishlist: 0,
     cartItems: [],
     wishlistItems: [],
   };
 
+  componentDidMount() {
+    const { fetchAllBoysData } = this.props;
+    fetchAllBoysData();
+  }
+
   handleAddProductToBag = (product) => {
-    const { cartItems } = this.state;
-    const cartCopyItems = [...cartItems];
-    cartCopyItems.push(product);
-    this.setState({
-      // cart: cart + 1,
-      cartItems: cartCopyItems,
-    });
+    // using Redux
+    const { addItemToCart } = this.props;
+    addItemToCart(product);
+
+    // const { cartItems } = this.state;
+    // const cartCopyItems = [...cartItems];
+    // cartCopyItems.push(product);
+    // this.setState({
+    //   cartItems: cartCopyItems,
+    // });
   }
 
   handleAddProductToWishlist = (product) => {
@@ -48,7 +60,6 @@ class App extends React.Component {
     const wishlistItemsCopy = [...wishlistItems];
     wishlistItemsCopy.push(product);
     this.setState({
-      // wishlist: wishlist + 1,
       wishlistItems: wishlistItemsCopy,
     });
   }
@@ -81,6 +92,8 @@ class App extends React.Component {
 
   render() {
     const { cartItems, wishlistItems } = this.state;
+    const { allCartItems } = this.props;
+    console.log('allCartItems = ', allCartItems);
     return (
       <div className="App">
         <Header cartCount={cartItems.length} wishlistCount={wishlistItems.length} />
@@ -102,7 +115,7 @@ class App extends React.Component {
               <Route
                 exact
                 path="/ItemsInbaggage"
-                component={() => <SelectedProducts selectedData={cartItems} handleRemove={this.handleRemoveFromBag} />}
+                component={() => <SelectedProducts selectedData={allCartItems} handleRemove={this.handleRemoveFromBag} />}
               />
               <Route
                 exact
@@ -119,4 +132,13 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStoreToProps = (store) => ({
+  allCartItems: store.cartData.bagProducts,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchAllBoysData: () => dispatch(getAllBoysProducts()),
+  addItemToCart: (product) => dispatch(addItemToBag(product)),
+});
+
+export default connect(mapStoreToProps, mapDispatchToProps)(App);

@@ -17,7 +17,7 @@ import { boysData } from './data';
 
 // Import Actions here
 import { getAllBoysProducts } from './actions/getAllBoysProducts';
-import { addItemToBag } from './actions/updateBagItems';
+import { addItemToBag, removeItemFromBag } from './actions/updateBagItems';
 
 const LandingPage = () => (
   <React.Fragment>
@@ -33,7 +33,6 @@ const LandingPage = () => (
 class App extends React.Component {
 
   state = {
-    cartItems: [],
     wishlistItems: [],
   };
 
@@ -46,13 +45,6 @@ class App extends React.Component {
     // using Redux
     const { addItemToCart } = this.props;
     addItemToCart(product);
-
-    // const { cartItems } = this.state;
-    // const cartCopyItems = [...cartItems];
-    // cartCopyItems.push(product);
-    // this.setState({
-    //   cartItems: cartCopyItems,
-    // });
   }
 
   handleAddProductToWishlist = (product) => {
@@ -65,16 +57,9 @@ class App extends React.Component {
   }
 
   handleRemoveFromBag = (productID) => {
-    // Remove specific Item from The Cart
-    const { cartItems } = this.state;
-    // Do not mutate your state directly
-    const cartCopyItems = [...cartItems];
-    const findRemoveItemIDIndex = cartItems.findIndex(item => item.id === productID);
-    // delete the item from specific index
-    cartCopyItems.splice(findRemoveItemIDIndex, 1);
-    this.setState({
-      cartItems: cartCopyItems
-    });
+    // using redux
+    const { removeItemFromCart } = this.props;
+    removeItemFromCart(productID);
   }
 
   handleRemoveWishlist = (wishListProductID) => {
@@ -91,12 +76,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { cartItems, wishlistItems } = this.state;
+    const { wishlistItems } = this.state;
     const { allCartItems } = this.props;
-    console.log('allCartItems = ', allCartItems);
     return (
       <div className="App">
-        <Header cartCount={cartItems.length} wishlistCount={wishlistItems.length} />
+        <Header cartCount={allCartItems.length} wishlistCount={wishlistItems.length} />
         <main>
           <Router>
             <Switch>
@@ -139,6 +123,7 @@ const mapStoreToProps = (store) => ({
 const mapDispatchToProps = dispatch => ({
   fetchAllBoysData: () => dispatch(getAllBoysProducts()),
   addItemToCart: (product) => dispatch(addItemToBag(product)),
+  removeItemFromCart: (productID) => dispatch(removeItemFromBag(productID)),
 });
 
 export default connect(mapStoreToProps, mapDispatchToProps)(App);

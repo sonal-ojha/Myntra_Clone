@@ -10,3 +10,18 @@ export const addItemToBag = (product) => {
     dispatch(addItemToCart(product));
   })
 }
+
+// Remove item from bag
+
+function removeItem(productId) {
+  return {
+    type: 'REMOVE_ITEM_FROM_BAG',
+    payload: productId
+  }
+}
+
+export const removeItemFromBag = (productId) => {
+  return (dispatch => {
+    dispatch(removeItem(productId));
+  })
+}
